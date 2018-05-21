@@ -1,4 +1,4 @@
-package com.jade.portal.logger;
+package com.jade.portal.common.logger;
 
 import java.net.URLDecoder;
 

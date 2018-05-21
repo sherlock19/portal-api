@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test">
+	<select id="selectTestList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM TB_TEST
+			WHERE 1=1
+		]]>
+			<if test ="idx != null">
+			<![CDATA[
+			AND IDX = ${idx}
+			]]>
+			</if>
+			<![CDATA[
+			ORDER BY IDX DESC
+		]]>
+	</select>
+	
+	<select id="selectTestDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM TB_TEST
+			WHERE 1=1
+			AND IDX = ${idx}
+			ORDER BY IDX DESC
+		]]>
+	</select>
+</mapper>

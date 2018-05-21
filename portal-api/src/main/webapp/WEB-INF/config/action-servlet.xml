@@ -14,16 +14,18 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-	<mvc:annotation-driven>
+	<!-- <mvc:annotation-driven>
 		<mvc:argument-resolvers>
 			<bean class="com.jade.portal.resolver.CustomMapArgumentResolver"></bean>
 		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
+	</mvc:annotation-driven> -->
+	
+	<mvc:annotation-driven />
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<bean id="loggerInterceptor" class="com.jade.portal.logger.LoggerInterceptor"></bean>
+			<bean id="loggerInterceptor" class="com.jade.portal.common.logger.LoggerInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>	
 		
@@ -32,51 +34,10 @@
      
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
     <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />   
-<!--      
-	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+     
+<!-- 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
 		p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
 		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
-	</bean>
- -->    
-<!-- 
-		<bean id="contentNegotiationManager"  class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-		        <property name="favorPathExtension" value="true" />
-		        <property name="ignoreAcceptHeader" value="true"/>
-		        <property name="useJaf" value="false"/>
-		        <property name="defaultContentType" value="text/html" />
-		
-		        <property name="mediaTypes">
-		            <map>
-		               <entry key="html" value="text/html"/>
-		                <entry key="json" value="application/json"/>
-		           </map>
-		        </property>
-		    </bean> -->
-
-<!--     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="order" value="1" />
-        <property name="ignoreAcceptHeader" value="true" />
-        <property name="mediaTypes">
-            <map>
-                <entry key="xml"  value="application/xml"/>
-                <entry key="json" value="application/json"/>
-            </map>
-        </property>
-        <property name="defaultViews">
-            <list>
-                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
-                    <property name="marshaller" ref="jaxbMarshaller"/>
-                </bean>
-                <bean
-                    class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-                    <property name="objectMapper" ref="jaxbJacksonObjectMapper"/>
-                </bean>
-            </list>
-        </property>
-    </bean> -->
-<!--     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <property name="order" value="2"/>
-    </bean>  -->   
-    
-	
+	</bean> -->
+    	
 </beans>
