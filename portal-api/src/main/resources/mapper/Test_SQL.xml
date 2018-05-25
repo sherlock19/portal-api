@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="test">
-	<select id="selectTestList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectTestModelList" parameterType="com.jade.portal.model.Test" resultType="com.jade.portal.model.Test">
 		<![CDATA[
 			SELECT * 
 			FROM TB_TEST
@@ -18,13 +18,62 @@
 		]]>
 	</select>
 	
-	<select id="selectTestDetail" parameterType="hashmap" resultType="hashmap">
+	<select id="selectTestModelDetail" parameterType="com.jade.portal.model.Test" resultType="com.jade.portal.model.Test">
 		<![CDATA[
 			SELECT * 
 			FROM TB_TEST
 			WHERE 1=1
-			AND IDX = ${idx}
+			AND IDX = #{idx}
 			ORDER BY IDX DESC
 		]]>
 	</select>
+	<insert id="createTestModel" parameterType="com.jade.portal.model.Test">
+		<![CDATA[
+			INSERT INTO TB_TEST
+			(
+			    IDX,
+			    CONTENTS,
+			    DEL_GB,
+			    CREA_ID
+			)
+			VALUES
+			(
+			    SEQ_TB_TEST_IDX.NEXTVAL,
+			    #{contents},
+			    'N',
+			    #{crea_id}
+			)		
+		]]>
+	</insert>
+	
+	<select id="selectTestMapDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM TB_TEST
+			WHERE 1=1
+			AND IDX = #{idx}
+			ORDER BY IDX DESC
+		]]>
+	</select>
+	
+	<select id="selectTestStringDetail" parameterType="String" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM TB_TEST
+			WHERE 1=1
+			AND IDX = #{idx}
+			ORDER BY IDX DESC
+		]]>
+	</select>
+	<update id="updateTestModel" parameterType="com.jade.portal.model.Test">
+	    <![CDATA[
+	        UPDATE TB_TEST
+	        SET 
+	            CONTENTS = #{CONTENTS}
+	        WHERE
+	            IDX = #{IDX}   
+	    ]]>
+	</update>	
+	
+	
 </mapper>

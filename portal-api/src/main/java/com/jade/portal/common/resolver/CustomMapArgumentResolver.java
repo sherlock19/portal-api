@@ -1,4 +1,4 @@
-package com.jade.portal.resolver;
+package com.jade.portal.common.resolver;
 
 import java.util.Enumeration;
 
