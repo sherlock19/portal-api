@@ -14,6 +14,7 @@ public interface TestService {
 	Map<String, Object> selectTestMapDetail(Map<String, Object> map) throws Exception;
 	Map<String, Object> selectTestStringDetail(String idx) throws Exception;
 	void updateTestModel(Test test) throws Exception;
+	void deleteTestModel(Test test) throws Exception;
 /*	List<Test> selectDBTestList() throws Exception;
 	Test selectDBTestDetail(String idx) throws Exception;*/
 	/*void createTest(String contents, String crea_id) throws Exception;

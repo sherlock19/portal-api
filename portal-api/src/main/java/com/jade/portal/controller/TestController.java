@@ -11,12 +11,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.jade.portal.common.CommandMap;
 import com.jade.portal.model.Test;
@@ -53,21 +55,31 @@ public class TestController {
 		return new ResponseEntity<Test>(newTest, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/model", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="/model")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createTest (@RequestBody Test test) throws Exception {
+	public ResponseEntity<Void> createTest (@RequestBody Test test, UriComponentsBuilder ucBuilder) throws Exception {
 		testService.createTestModel(test);
+		
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/model/model", method=RequestMethod.POST, consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createTestModel (@ModelAttribute Test test) throws Exception {
+	public void createTestModel (@ModelAttribute("test") Test test) throws Exception {
 		testService.createTestModel(test);
 	}
 	
-	@RequestMapping(value="/model/model/{idx}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@RequestMapping(value="/model/model/{idx}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public void updateTestModel (@RequestBody Test test, @PathVariable("idx") String idx) throws Exception {
+		test.setIdx(idx);
 		testService.updateTestModel(test);
+	}
+	
+	@RequestMapping(value="/model/model/{idx}", method=RequestMethod.DELETE)
+	public void deleteTestModel (@PathVariable("idx") String idx) throws Exception {
+		Test test = new Test();
+		test.setIdx(idx);
+		testService.deleteTestModel(test);
 	}
 	
 	@RequestMapping(value="/map/{idx}", method=RequestMethod.GET)

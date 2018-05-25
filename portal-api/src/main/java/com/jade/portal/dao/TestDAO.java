@@ -40,6 +40,10 @@ public class TestDAO extends AbstractDAO {
 		update("test.updateTestModel", test);
 	}
 	
+	public void deleteTestModel(Test test) {
+		update("test.deleteTestModel", test);
+	}
+	
 	
 /*	@SuppressWarnings("unchecked")
 	public void createTest(String contents, String crea_id) {		

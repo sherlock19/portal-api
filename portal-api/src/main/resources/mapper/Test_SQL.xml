@@ -69,11 +69,28 @@
 	    <![CDATA[
 	        UPDATE TB_TEST
 	        SET 
-	            CONTENTS = #{CONTENTS}
+	            CONTENTS = #{contents}
 	        WHERE
-	            IDX = #{IDX}   
+	            IDX = #{idx}   
 	    ]]>
 	</update>	
+	<delete id="deleteTestModel" parameterType="com.jade.portal.model.Test">
+		<![CDATA[
+			DELETE 
+				FROM TB_TEST
+			WHERE IDX = #{idx}
+		]]>
+	</delete>
+	
+	<update id="deleteAlterTestModel" parameterType="com.jade.portal.model.Test">
+		<![CDATA[
+			UPDATE TB_TEST
+			SET 
+				DEL_GB='Y'
+			WHERE IDX = #{idx}
+		]]>
+	</update>
+	
 	
 	
 </mapper>

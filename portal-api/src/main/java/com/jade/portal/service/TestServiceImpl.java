@@ -58,6 +58,12 @@ public class TestServiceImpl implements TestService {
 		
 	}
 
+	@Override
+	public void deleteTestModel(Test test) throws Exception {
+		// TODO Auto-generated method stub
+		testDAO.deleteTestModel(test);
+	}
+
 /*	@Override
 	public void createTest(String contents, String crea_id) throws Exception {
 		// TODO Auto-generated method stub
